@@ -4,6 +4,8 @@ import com.example.demo.dto.CatDto;
 import com.example.demo.model.Cat;
 import com.example.demo.service.api.ICatService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS PERSON;
-DROP TABLE IF EXISTS CAT;
+
 
 CREATE TABLE PERSON(
                        id long NOT NULL AUTO_INCREMENT,
@@ -30,16 +29,26 @@ CREATE TABLE VOCATIONDAY(
 
 
 INSERT INTO PERSON( age,name,sur_name,vacation_type)
-values (25, 'Pavel', 'DDD','ILLNESS');
+values (25, 'Pavelyyyyyyyyyyyyyyyyyy', 'DDD','ILLNESS');
 INSERT INTO PERSON( age,name,sur_name,vacation_type)
 values (35, 'Sasha', 'lll',' EXCEPTION');
+INSERT INTO PERSON( age,name,sur_name,vacation_type)
+values (35, 'Olia', 'lll',' EXCEPTION');
+INSERT INTO PERSON( age,name,sur_name,vacation_type)
+values (35, 'ssss', 'lll',' EXCEPTION');
 
 INSERT INTO CAT( name,age,person_id )
 values ('est',2,1);
 INSERT INTO CAT(name,age,person_id )
-values ('aaaaffffffffffffffffffffffff',3,1);
+values ('aaaarrrrrrrrrrrrrrrrrr',3,1);
+INSERT INTO CAT(name,age,person_id )
+values ('xxxx',3,2);
+INSERT INTO CAT( name,age,person_id )
+values ('eeee',2,1);
+INSERT INTO CAT( name,age,person_id )
+values ('ttt',2,4);
 
 INSERT INTO VOCATIONDAY( day,person_id )
 values ('2022-1-1',1);
-INSERT INTO VOCATIONDAY(day,person_id )
-values ('2022-3-2',1);
+INSERT INTO VOCATIONDAY( day,person_id )
+values ('2022-2-1',1);

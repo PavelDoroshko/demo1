@@ -7,11 +7,16 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -98,48 +103,68 @@ for(Cat cat:cats){
     }
 
     @SneakyThrows
-    public void buildExcel() {
+    public XSSFWorkbook buildExcel() {
 
         List<Person> persons = personService.readAll();
+
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet spreadsheet = workbook.createSheet(" Student Data ");
         XSSFRow row;
-        int n = 1;
+
+        int rowid = 0;
         Iterator<Person> iter = persons.iterator();
-        Map<Integer, Object[]> studentData = new TreeMap<Integer, Object[]>();
-        studentData.put(n, new Object[]{"AGE", "NAME", "SURNAME", "CAT"});
         while (iter.hasNext()) {
+
+            int cellid = 0;
+
+               if (rowid == 0) {
+                    row = spreadsheet.createRow(rowid);
+                    String[] column = new String[]{"AGE", "NAME", "SURNAME", "CAT"};
+                    int hedarCellid = 0;
+                    for (String str : column) {
+                    Cell cell = row.createCell(hedarCellid++);
+                    cell.setCellValue(str);
+                }
+            }
             Person person = iter.next();
             List<Cat> cats = person.getCats();
             StringBuilder stringBuilder = new StringBuilder();
             for (Cat cat : cats) {
                 stringBuilder.append(cat.getName())
-                        .append(" ");
+                        .append(",");
             }
-            studentData.put(++n, new Object[]{person.getAge(), person.getName(), person.getSurName(), stringBuilder.toString()});
-        }
-        Set<Integer> keyid = studentData.keySet();
+            if (!person.getCats().isEmpty()) stringBuilder.deleteCharAt(stringBuilder.lastIndexOf(","));
 
-        int rowid = 0;
+            String[] pers = new String[]{person.getAge().toString(), person.getName(), person.getSurName(), stringBuilder.toString()};
 
-        for (Integer key : keyid) {
+            row = spreadsheet.createRow(++rowid);
 
-            row = spreadsheet.createRow(rowid++);
-            Object[] objectArr = studentData.get(key);
-            int cellid = 0;
-
-            for (Object obj : objectArr) {
+            for (String str : pers) {
                 Cell cell = row.createCell(cellid++);
-                cell.setCellValue(String.valueOf(obj));
+                cell.setCellValue(str);
             }
         }
+        for (int columnIndex = 0; columnIndex < 4; columnIndex++) {
+            spreadsheet.autoSizeColumn(columnIndex);
+        }
+        return workbook;
 
-        FileOutputStream out = new FileOutputStream(
-                new File("/home/pavel/first.xlsx"));
-        // new File ("d:/first.xlsx"));
-        workbook.write(out);
-        out.close();
+    }
 
+    public ByteArrayResource export() throws IOException {
 
+        XSSFWorkbook workbook = buildExcel();
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        workbook.write(baos);
+        byte[] xls = baos.toByteArray();
+        ByteArrayResource byteArrayResource = new ByteArrayResource(xls) {
+
+            @Override
+            public String getFilename() {
+                return "excel";
+            }
+        };
+        return byteArrayResource;
     }
 }
