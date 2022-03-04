@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-//@Data
 @Entity
 @Table(name="CAT")
 public class Cat {

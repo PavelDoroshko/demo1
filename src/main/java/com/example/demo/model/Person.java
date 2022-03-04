@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import com.example.demo.model.enam.VacationType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,8 +22,8 @@ public class Person {
     private Integer age;
     private String surName;
 
-    @Enumerated(EnumType.STRING)
-    private VacationType vacationType;
+   // @Enumerated(EnumType.STRING)
+   // private VacationType vacationType;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Cat> cats;
@@ -49,7 +47,7 @@ public class Person {
         this.name = name;
     }
 
-    public Integer getAge() {
+   public Integer getAge() {
         return age;
     }
 

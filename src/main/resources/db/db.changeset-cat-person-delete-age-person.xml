@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="20210330-01" author="s_yakimchik">
+        <addColumn tableName="cat">
+            <column name="create_date" type="datetime"/>
+        </addColumn>
+    </changeSet>
+    <changeSet  author="liquibase-docs"  id="dropColumn-example">
+        <dropColumn
+                     tableName="person">
+            <column  name="name"/>
+        </dropColumn>
+    </changeSet>
+
+</databaseChangeLog>

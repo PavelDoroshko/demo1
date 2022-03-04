@@ -18,7 +18,7 @@ public class Demo1Application {
         SpringApplication.run(Demo1Application.class, args);
 //       ExcelService excelService = new ExcelService();
 //        excelService.buildExcelDocument(1L);
-        List<String> integerList = List.of("1", "2", "2", "3", "5", "2", "8");
+    /*    List<String> integerList = List.of("1", "2", "2", "3", "5", "2", "8");
         List<String> integerList1 = integerList.stream()
                 .filter(a -> a.equals("8"))
                 .collect(Collectors.toList());
@@ -33,7 +33,7 @@ public class Demo1Application {
 
             System.out.println("внутри периода");
         }
-        System.out.println("продолжаем");
+        System.out.println("продолжаем");*/
     }
 
 }

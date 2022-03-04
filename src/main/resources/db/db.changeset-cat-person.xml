@@ -21,10 +21,12 @@
             <column name="id" type="long" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="VARCHAR(64)"/>
+            <column name="name" type="VARCHAR(64)">
+                  <constraints nullable="false"/>
+            </column>
             <column name="age" type="INT"/>
+            <column name="person_id" type="INT"/>
         </createTable>
-
     </changeSet>
 
   </databaseChangeLog>

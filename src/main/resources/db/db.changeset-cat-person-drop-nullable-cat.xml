@@ -5,7 +5,14 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
+    <changeSet  author="liquibase-docs"  id="dropNotNullConstraint-example">
+        <preConditions onFail="WARN">
+            <tableExists tableName="vacation_request" schemaName="vacation"/>
+        </preConditions>
 
-    <include file="db.changeset-cat-person.sql" relativeToChangelogFile="true"/>
+        <dropNotNullConstraint
+                                columnName="name"
+                                tableName="cat"/>
+    </changeSet>
 
 </databaseChangeLog>
