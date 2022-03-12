@@ -7,7 +7,7 @@
 
     <changeSet id="20220112-2" author="Pavel">
         <createTable tableName="person">
-            <column name="id" type="long" autoIncrement="true">
+            <column name="id" type="bigserial" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="age" type="int"/>
@@ -18,7 +18,7 @@
 
     <changeSet id="20220112-1" author="Pavel">
         <createTable tableName="cat">
-            <column name="id" type="long" autoIncrement="true">
+            <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(64)">

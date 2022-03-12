@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="VOCATIONDAY")
+
 public class VocationDay {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

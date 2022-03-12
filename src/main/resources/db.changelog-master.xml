@@ -7,6 +7,6 @@
 
 
 
-    <include file="db/db.changeset-cat-person.xml" relativeToChangelogFile="true"/>
+    <include file="db/db.changeset-cat-person.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
